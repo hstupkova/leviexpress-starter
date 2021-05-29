@@ -31,6 +31,10 @@ export const JourneyPicker = ({ onJourneyChange }) => {
     console.log(fromCity);
     console.log(toCity);
     console.log(date);
+
+    fetch(`https://leviexpress-backend.herokuapp.com/api/journey?fromCity=${fromCity}&toCity=${toCity}&date=${date}`)
+        .then(result => result.json())
+        .then(json => onJourneyChange(json.data));
   };
 
   const [fromCity, setFromCity] = useState('');
@@ -92,6 +96,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
           <button 
             className="btn" 
             type="submit"
+            disabled={fromCity !=='' && toCity !=='' && date !=='' ? false : true}
           > 
             Vyhledat spoj
           </button>
