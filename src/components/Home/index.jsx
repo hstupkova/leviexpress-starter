@@ -12,7 +12,13 @@ export const Home = () => {
       {
         journey !== null ? <JourneyDetail journey={journey} /> : <div></div>
       }
-      <SeatPicker />
+      {
+        journey !== null ? <SeatPicker 
+        seats={journey.seats}
+        journey={journey.journeyId} />
+        : <div></div>
+      }
+      
       
     </main>
   );
